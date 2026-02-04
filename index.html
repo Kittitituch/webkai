@@ -1,0 +1,1920 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>การจัดการฐานข้อมูลเบื้องต้น | หน้าแรก</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0a4f8b;
+            --secondary-color: #4CAF50;
+            --light-color: #f8f9fa;
+            --dark-color: #1a2a3a;
+            --bg-color: #ffffff;
+        }
+        
+        body {
+            font-family: 'Prompt', sans-serif;
+            color: #333;
+            background-color: var(--bg-color);
+            overflow-x: hidden;
+        }
+        
+        .navbar {
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+        
+        .navbar-brand {
+            font-family: 'Kanit', sans-serif;
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+        
+        .nav-link {
+            font-size: 1rem;
+            font-weight: 500;
+            margin: 0 10px;
+            color: white !important;
+            transition: all 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: var(--secondary-color) !important;
+            transform: translateY(-2px);
+        }
+        
+        .nav-link.active {
+            color: var(--secondary-color) !important;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(10, 79, 139, 0.8), rgba(26, 42, 58, 0.8)), url('/api/placeholder/1200/600') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 120px 0;
+            position: relative;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-family: 'Kanit', sans-serif;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 10px 25px;
+            font-weight: 500;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background-color: #083b6f;
+            border-color: #083b6f;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(10, 79, 139, 0.3);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            padding: 10px 25px;
+            font-weight: 500;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #3d8b3d;
+            border-color: #3d8b3d;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 40px;
+            font-weight: 600;
+            color: var(--primary-color);
+            display: inline-block;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 60%;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .timeline {
+            list-style-type: none;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline:before {
+            content: ' ';
+            background: var(--secondary-color);
+            width: 3px;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item:before {
+            content: ' ';
+            background: white;
+            border: 3px solid var(--secondary-color);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            left: -38px;
+            top: 0;
+        }
+        
+        .timeline-date {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .teacher-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        
+        .teacher-img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .teacher-info {
+            padding: 20px;
+        }
+        
+        .teacher-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+        
+        .teacher-position {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        .teacher-contact {
+            margin-top: 15px;
+        }
+        
+        .teacher-contact a {
+            margin-right: 10px;
+            color: var(--dark-color);
+            transition: all 0.3s;
+        }
+        
+        .teacher-contact a:hover {
+            color: var(--primary-color);
+        }
+        /* ส่วนดาวน์โหลดเอกสาร */
+        .download-item {
+            background: var(--light-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .download-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .download-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .download-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            transition: all 0.3s;
+        }
+        
+        .download-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+      
+        /* ส่วนคำถามที่พบบ่อย */
+        .faq-section {
+            background-color: var(--light-color);
+        }
+        
+        .accordion-button:not(.collapsed) {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: var(--primary-color);
+        }
+        
+        /* ส่วนผู้สอน & ติดต่อ */
+        .instructor-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .instructor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .instructor-image {
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--secondary-color);
+            transform: scale(1.1);
+        }
+        
+        .contact-info {
+            background-color: var(--light-color);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+        
+        .contact-form .form-control {
+            border-radius: 0;
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-form .form-control:focus {
+            box-shadow: none;
+            border-color: var(--primary-color);
+        }
+        
+        .contact-form .btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            transition: all 0.3s;
+        }
+        
+        .contact-form .btn:hover {
+            background-color: var(--secondary-color);
+        }       
+        
+        /* ส่วนคำถามที่พบบ่อย */
+        .faq-section {
+            background-color: var(--light-color);
+        }
+        
+        .accordion-button:not(.collapsed) {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: var(--primary-color);
+        }
+        
+        /* ส่วนผู้สอน & ติดต่อ */
+        .instructor-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .instructor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .instructor-image {
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--secondary-color);
+            transform: scale(1.1);
+        }
+        
+        .contact-info {
+            background-color: var(--light-color);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+        
+        .contact-form .form-control {
+            border-radius: 0;
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-form .form-control:focus {
+            box-shadow: none;
+            border-color: var(--primary-color);
+        }
+        
+        .contact-form .btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            transition: all 0.3s;
+        }
+        
+        .contact-form .btn:hover {
+            background-color: var(--secondary-color);
+        }   
+
+ /* ส่วนท้ายเว็บ */       
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-title:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+        
+        .footer-links a {
+            display: block;
+            margin-bottom: 10px;
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .footer-contact li {
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+        
+        .footer-contact i {
+            color: var(--secondary-color);
+            margin-right: 10px;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            margin-top: 40px;
+        }
+        
+        .quick-access {
+            padding: 60px 0;
+            background-color: var(--light-color);
+        }
+        
+        .quick-card {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            height: 100%;
+        }
+        
+        .quick-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .quick-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .quick-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .bg-light-custom {
+            background-color: var(--light-color);
+        }
+
+        /* กำหนด CSS สำหรับ Footer */
+        .footer {
+            background-color: #212529;
+            color: #ffffff;
+            padding: 50px 0 20px;
+            font-size: 16px;
+        }
+        
+        .footer h5 {
+            color: #ffffff;
+            font-weight: 600;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer h5::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: #0d6efd;
+        }
+        
+        .footer-links {
+            padding-left: 0;
+            list-style: none;
+        }
+        
+        .footer-links li {
+            padding: 6px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links li:hover {
+            padding-left: 5px;
+        }
+        
+        .footer-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #0d6efd;
+        }
+        
+        .social-icons {
+            padding-left: 0;
+            list-style: none;
+            margin-bottom: 0;
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background-color: #2c3136;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: #0d6efd;
+            transform: translateY(-3px);
+        }
+        
+        .contact-info i {
+            margin-right: 8px;
+            color: #0d6efd;
+        }
+        
+        .newsletter-form {
+            position: relative;
+            margin-top: 15px;
+        }
+        
+        .newsletter-form input {
+            height: 48px;
+            border-radius: 4px;
+            padding-right: 50px;
+            background-color: #2c3136;
+            border: 1px solid #3a3f44;
+            color: #ffffff;
+        }
+        
+        .newsletter-form input:focus {
+            background-color: #2c3136;
+            color: #ffffff;
+            border-color: #0d6efd;
+            box-shadow: none;
+        }
+        
+        .newsletter-form button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            height: 38px;
+            width: 38px;
+            background-color: #0d6efd;
+            border: none;
+            border-radius: 4px;
+            color: #ffffff;
+        }
+        
+        .footer-bottom {
+            padding-top: 20px;
+            margin-top: 20px;
+            border-top: 1px solid #3a3f44;
+        }
+        
+        .footer-bottom p {
+            margin-bottom: 0;
+        }
+
+        .logo {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+
+        /* เพิ่มเอฟเฟกต์ ขึ้นไปด้านบน (Back to Top) */
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            width: 40px;
+            height: 40px;
+            background-color: #0d6efd;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #back-to-top:hover {
+            background-color: #0b5ed7;
+            transform: translateY(-3px);        
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .navbar-collapse {
+                background-color: var(--primary-color);
+                padding: 20px;
+                border-radius: 0 0 10px 10px;
+            }
+            
+            .hero-section {
+                padding: 80px 0;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-database me-2"></i>การจัดการฐานข้อมูลเบื้องต้น
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#"><i class="fas fa-home me-1"></i> หน้าแรก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about"><i class="fas fa-info-circle me-1"></i> เกี่ยวกับรายวิชา</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#lessons"><i class="fas fa-book me-1"></i> เนื้อหาวิชา</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#schedule"><i class="fas fa-calendar-alt me-1"></i> ปฏิทินเรียน</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#download"><i class="fas fa-download me-1"></i> ดาวน์โหลด</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#submit"><i class="fas fa-upload me-1"></i> ส่งงาน</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#faq"><i class="fas fa-question-circle me-1"></i> FAQ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#teacher"><i class="fas fa-user me-1"></i> ผู้สอน</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 hero-content">
+                    <h1 class="hero-title">การจัดการฐานข้อมูลเบื้องต้น</h1>
+                    <p class="hero-subtitle">พัฒนาทักษะการจัดการฐานข้อมูลเพื่อการทำงานในยุคดิจิทัล</p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="#lessons" class="btn btn-primary me-3 mb-2"><i class="fas fa-book me-2"></i>เข้าสู่บทเรียน</a>
+                        <a href="#download" class="btn btn-secondary me-3 mb-2"><i class="fas fa-download me-2"></i>ดาวน์โหลดเอกสาร</a>
+                        <a href="#submit" class="btn btn-light mb-2"><i class="fas fa-upload me-2"></i>ส่งงาน</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 d-none d-lg-block">
+                    <div class="teacher-welcome text-center">
+                        <img src="imgs/1.png" alt="กิตติทัช" class="img-fluid rounded-circle mb-3" style="border: 5px solid white;">
+                        <h5 class="text-white">อาจารย์กิตติทัช</h5>
+                        <p class="text-light">อาจารย์ผู้สอนประจำรายวิชา</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Welcome Message -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h2 class="section-title text-center">ยินดีต้อนรับสู่รายวิชาการจัดการฐานข้อมูลเบื้องต้น</h2>
+                </div>
+            </div>
+            <div class="row mt-4 justify-content-center">
+                <div class="col-md-10">
+                    <div class="p-4 bg-light-custom rounded-3 shadow-sm">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="imgs/2.png" alt="อาจารย์กิตติทัช" class="rounded-circle me-3" style="width: 80px; height: 80px; object-fit: cover;">
+                            <div>
+                                <h5 class="mb-1" style="color: var(--primary-color);">อาจารย์กิตติทัช</h5>
+                                <p class="mb-0 text-muted">อาจารย์ผู้สอนประจำรายวิชา</p>
+                            </div>
+                        </div>
+                        <p>
+                            สวัสดีนักศึกษาทุกคน ยินดีต้อนรับสู่รายวิชาการจัดการฐานข้อมูลเบื้องต้น รายวิชานี้จะพาทุกคนเรียนรู้หลักการพื้นฐานของการจัดการฐานข้อมูล 
+                            ตั้งแต่การออกแบบ การสร้าง การเขียนคำสั่ง SQL ไปจนถึงการบริหารจัดการฐานข้อมูลอย่างมีประสิทธิภาพ
+                        </p>
+                        <p>
+                            เว็บไซต์นี้ถูกออกแบบมาเพื่อเป็นแหล่งรวมทรัพยากรการเรียนรู้ทั้งหมด ไม่ว่าจะเป็นเนื้อหา เอกสารประกอบการสอน วิดีโอการสอน แบบฝึกหัด และปฏิทินการเรียน 
+                            ขอให้นักศึกษาทุกคนใช้ประโยชน์จากทรัพยากรเหล่านี้อย่างเต็มที่ และหากมีคำถามหรือข้อสงสัยใดๆ สามารถติดต่อผู้สอนได้ตลอดเวลา
+                        </p>
+                        <p class="mb-0">
+                            ขอให้ทุกคนมีความสุขกับการเรียนรู้ และประสบความสำเร็จในรายวิชานี้
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Access Section -->
+    <section class="quick-access py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-4">
+                    <h2 class="section-title text-center">เข้าถึงด่วน</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="quick-card">
+                        <div class="quick-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3 class="quick-title">เนื้อหาวิชา</h3>
+                        <p>เข้าถึงบทเรียนทั้งหมด วิดีโอ และแบบฝึกหัด</p>
+                        <a href="#lessons" class="btn btn-primary mt-3">เข้าชม</a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="quick-card">
+                        <div class="quick-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3 class="quick-title">ปฏิทินเรียน</h3>
+                        <p>ตารางเรียนและกำหนดส่งงานทั้งหมด</p>
+                        <a href="#schedule" class="btn btn-primary mt-3">เข้าชม</a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="quick-card">
+                        <div class="quick-icon">
+                            <i class="fas fa-download"></i>
+                        </div>
+                        <h3 class="quick-title">ดาวน์โหลด</h3>
+                        <p>เอกสารประกอบการเรียนและโค้ดตัวอย่าง</p>
+                        <a href="#download" class="btn btn-primary mt-3">เข้าชม</a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="quick-card">
+                        <div class="quick-icon">
+                            <i class="fas fa-upload"></i>
+                        </div>
+                        <h3 class="quick-title">ส่งงาน</h3>
+                        <p>อัปโหลดงานและแบบฝึกหัดที่ได้รับมอบหมาย</p>
+                        <a href="#submit" class="btn btn-primary mt-3">เข้าชม</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Course Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="section-title">เกี่ยวกับรายวิชา</h2>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3 class="feature-title">วัตถุประสงค์รายวิชา</h3>
+                        <ul class="mt-3">
+                            <li>เข้าใจแนวคิดพื้นฐานของระบบฐานข้อมูล</li>
+                            <li>สามารถออกแบบและสร้างฐานข้อมูลได้อย่างมีประสิทธิภาพ</li>
+                            <li>เขียนคำสั่ง SQL เพื่อจัดการข้อมูลได้</li>
+                            <li>เข้าใจการทำ Normalization และการสร้าง ER Diagram</li>
+                            <li>ประยุกต์ใช้งานฐานข้อมูลในงานจริงได้</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3 class="feature-title">ผลการเรียนรู้ที่คาดหวัง</h3>
+                        <ul class="mt-3">
+                            <li>ออกแบบและสร้างฐานข้อมูลที่มีประสิทธิภาพได้</li>
+                            <li>เขียนคำสั่ง SQL ระดับพื้นฐานและปานกลางได้</li>
+                            <li>วิเคราะห์ปัญหาและออกแบบฐานข้อมูลที่เหมาะสมกับความต้องการได้</li>
+                            <li>ใช้งานเครื่องมือบริหารจัดการฐานข้อมูลเช่น phpMyAdmin ได้</li>
+                            <li>เชื่อมต่อฐานข้อมูลกับแอปพลิเคชันได้</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h3 class="feature-title">เนื้อหารายวิชา</h3>
+                        <ul class="mt-3">
+                            <li>แนวคิดพื้นฐานของระบบฐานข้อมูล</li>
+                            <li>การออกแบบฐานข้อมูลและ ER Diagram</li>
+                            <li>ภาษา SQL (SELECT, INSERT, UPDATE, DELETE)</li>
+                            <li>การทำ Normalization</li>
+                            <li>การสร้างและจัดการ Indexes</li>
+                            <li>Transaction และ Concurrency Control</li>
+                            <li>Data Security และการจัดการสิทธิ์</li>
+                            <li>การเชื่อมต่อฐานข้อมูลกับแอปพลิเคชัน</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3 class="feature-title">เกณฑ์การวัดผล</h3>
+                        <div class="mt-3">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>การสอบกลางภาค</span>
+                                <span>25%</span>
+                            </div>
+                            <div class="progress mb-3" style="height: 10px;">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>การสอบปลายภาค</span>
+                                <span>30%</span>
+                            </div>
+                            <div class="progress mb-3" style="height: 10px;">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>แบบฝึกหัดและงานที่ได้รับมอบหมาย</span>
+                                <span>25%</span>
+                            </div>
+                            <div class="progress mb-3" style="height: 10px;">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>โครงงานกลุ่ม</span>
+                                <span>15%</span>
+                            </div>
+                            <div class="progress mb-3" style="height: 10px;">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>การมีส่วนร่วมในชั้นเรียน</span>
+                                <span>5%</span>
+                            </div>
+                            <div class="progress mb-3" style="height: 10px;">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 5%" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- 1. ส่วนเนื้อหาวิชา/บทเรียน -->
+<section id="lessons" class="py-5 bg-light-custom">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="section-title">เนื้อหาวิชา / บทเรียน</h2>
+                <p class="mb-4">รายวิชานี้แบ่งเนื้อหาออกเป็น 15 สัปดาห์ ซึ่งครอบคลุมตั้งแต่พื้นฐานไปจนถึงการประยุกต์ใช้ฐานข้อมูลในงานจริง</p>
+            </div>
+        </div>
+
+        <div class="accordion" id="lessonsAccordion">
+            <!-- สัปดาห์ที่ 1 -->
+            <div class="accordion-item mb-3 border rounded shadow-sm">
+                <h2 class="accordion-header" id="week1Header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#week1Content" aria-expanded="true" aria-controls="week1Content">
+                        <i class="fas fa-book-open me-2 text-primary"></i> สัปดาห์ที่ 1: แนะนำระบบฐานข้อมูล
+                    </button>
+                </h2>
+                <div id="week1Content" class="accordion-collapse collapse show" aria-labelledby="week1Header" data-bs-parent="#lessonsAccordion">
+                    <div class="accordion-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h5 class="text-primary">เนื้อหาประจำสัปดาห์</h5>
+                                <ul>
+                                    <li>ความหมายและความสำคัญของฐานข้อมูล</li>
+                                    <li>ประวัติและวิวัฒนาการของฐานข้อมูล</li>
+                                    <li>ประเภทของฐานข้อมูล (Relational, NoSQL, ฯลฯ)</li>
+                                    <li>องค์ประกอบของระบบฐานข้อมูล</li>
+                                    <li>DBMS (Database Management System)</li>
+                                </ul>
+                                
+                                <div class="mt-4">
+                                    <h5 class="text-primary">ทรัพยากรการเรียนรู้</h5>
+                                    <div class="d-flex mb-2">
+                                        <i class="fas fa-video text-danger mt-1 me-2"></i>
+                                        <a href="#" class="text-decoration-none">วิดีโอบรรยาย: แนะนำระบบฐานข้อมูล (45 นาที)</a>
+                                    </div>
+                                    <div class="d-flex mb-2">
+                                        <i class="fas fa-file-pdf text-danger mt-1 me-2"></i>
+                                        <a href="#" class="text-decoration-none">สไลด์ประกอบการสอน (PDF)</a>
+                                    </div>
+                                    <div class="d-flex mb-2">
+                                        <i class="fas fa-tasks text-success mt-1 me-2"></i>
+                                        <a href="#" class="text-decoration-none">แบบฝึกหัดท้ายบท (ส่งภายใน 1 สัปดาห์)</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-0 shadow-sm">
+                                    <div class="card-body p-3 text-center">
+                                        <img src="/api/placeholder/300/200" alt="Database Introduction" class="img-fluid rounded mb-3">
+                                        <h6 class="mb-0">แนะนำระบบฐานข้อมูล</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- สัปดาห์ที่ 2 -->
+            <div class="accordion-item mb-3 border rounded shadow-sm">
+                <h2 class="accordion-header" id="week2Header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#week2Content" aria-expanded="false" aria-controls="week2Content">
+                        <i class="fas fa-book-open me-2 text-primary"></i> สัปดาห์ที่ 2: Entity-Relationship Model (ER Model)
+                    </button>
+                </h2>
+                <div id="week2Content" class="accordion-collapse collapse" aria-labelledby="week2Header" data-bs-parent="#lessonsAccordion">
+                    <div class="accordion-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h5 class="text-primary">เนื้อหาประจำสัปดาห์</h5>
+                                <ul>
+                                    <li>แนวคิดของ Entity-Relationship Model</li>
+                                    <li>องค์ประกอบของ ER Diagram</li>
+                                    <li>Entity, Attribute และ Relationship</li>
+                                    <li>Cardinality และ Participation Constraints</li>
+                                    <li>การออกแบบ ER Diagram ที่มีประสิทธิภาพ</li>
+                                </ul>
+                                
+                                <div class="mt-4">
+                                    <h5 class="text-primary">ทรัพยากรการเรียนรู้</h5>
+                                    <div class="d-flex mb-2">
+                                        <i class="fas fa-video text-danger mt-1 me-2"></i>
+                                        <a href="#" class="text-decoration-none">วิดีโอบรรยาย: การออกแบบ ER Diagram (55 นาที)</a>
+                                    </div>
+                                    <div class="d-flex mb-2">
+                                        <i class="fas fa-file-pdf text-danger mt-1 me-2"></i>
+                                        <a href="#" class="text-decoration-none">สไลด์ประกอบการสอน (PDF)</a>
+                                    </div>
+                                    <div class="d-flex mb-2">
+                                        <i class="fas fa-tasks text-success mt-1 me-2"></i>
+                                        <a href="#" class="text-decoration-none">แบบฝึกหัด: ออกแบบ ER Diagram (ส่งภายใน 1 สัปดาห์)</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-0 shadow-sm">
+                                    <div class="card-body p-3 text-center">
+                                        <img src="/api/placeholder/300/200" alt="ER Diagram" class="img-fluid rounded mb-3">
+                                        <h6 class="mb-0">ตัวอย่าง ER Diagram</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- สัปดาห์ที่ 3 -->
+            <div class="accordion-item mb-3 border rounded shadow-sm">
+                <h2 class="accordion-header" id="week3Header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#week3Content" aria-expanded="false" aria-controls="week3Content">
+                        <i class="fas fa-book-open me-2 text-primary"></i> สัปดาห์ที่ 3: Relational Model และ Database Design
+                    </button>
+                </h2>
+                <div id="week3Content" class="accordion-collapse collapse" aria-labelledby="week3Header" data-bs-parent="#lessonsAccordion">
+                    <div class="accordion-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h5 class="text-primary">เนื้อหาประจำสัปดาห์</h5>
+                                <ul>
+                                    <li>แนวคิดของ Relational Model</li>
+                                    <li>Tables, Tuples, Attributes, Keys</li>
+                                    <li>Primary Key, Foreign Key, Candidate Key</li>
+                                    <li>Integrity Constraints</li>
+                                    <li>การแปลง ER Diagram เป็น Relational Schema</li>
+                                </ul>
+                                
+                                <div class="mt-4">
+                                    <h5 class="text-primary">ทรัพยากรการเรียนรู้</h5>
+                                    <div class="d-flex mb-2">
+                                        <i class="fas fa-video text-danger mt-1 me-2"></i>
+                                        <a href="#" class="text-decoration-none">วิดีโอบรรยาย: Relational Model (50 นาที)</a>
+                                    </div>
+                                    <div class="d-flex mb-2">
+                                        <i class="fas fa-file-pdf text-danger mt-1 me-2"></i>
+                                        <a href="#" class="text-decoration-none">สไลด์ประกอบการสอน (PDF)</a>
+                                    </div>
+                                    <div class="d-flex mb-2">
+                                        <i class="fas fa-tasks text-success mt-1 me-2"></i>
+                                        <a href="#" class="text-decoration-none">แบบฝึกหัด: แปลง ER เป็น Relational Schema (ส่งภายใน 1 สัปดาห์)</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-0 shadow-sm">
+                                    <div class="card-body p-3 text-center">
+                                        <img src="/api/placeholder/300/200" alt="Relational Model" class="img-fluid rounded mb-3">
+                                        <h6 class="mb-0">แบบจำลองความสัมพันธ์ (Relational Model)</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ปุ่มดูเพิ่มเติม -->
+            <div class="text-center mt-4">
+                <a href="#" class="btn btn-primary">
+                    <i class="fas fa-list me-2"></i>ดูบทเรียนทั้งหมด (15 สัปดาห์)
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 2. ส่วนปฏิทินเรียน -->
+<section id="schedule" class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="section-title">ปฏิทินเรียน & กำหนดส่งงาน</h2>
+                <p class="mb-4">ติดตามตารางเรียน การบ้าน และกำหนดการสอบตลอดภาคการศึกษาได้ที่นี่</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8 mb-4">
+                <!-- Calendar Frame -->
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-0">
+                        <div class="bg-primary text-white p-3 d-flex justify-content-between align-items-center rounded-top">
+                            <h5 class="mb-0"><i class="fas fa-calendar-alt me-2"></i>ปฏิทินเรียน (เมษายน 2025)</h5>
+                            <div>
+                                <button class="btn btn-sm btn-outline-light me-2"><i class="fas fa-chevron-left"></i></button>
+                                <button class="btn btn-sm btn-outline-light"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <table class="table table-bordered">
+                                <thead class="table-light">
+                                    <tr class="text-center">
+                                        <th>อา</th>
+                                        <th>จ</th>
+                                        <th>อ</th>
+                                        <th>พ</th>
+                                        <th>พฤ</th>
+                                        <th>ศ</th>
+                                        <th>ส</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="text-center">
+                                        <td class="text-muted">30</td>
+                                        <td class="text-muted">31</td>
+                                        <td>1</td>
+                                        <td>2</td>
+                                        <td>3</td>
+                                        <td>4</td>
+                                        <td>5</td>
+                                    </tr>
+                                    <tr class="text-center">
+                                        <td>6</td>
+                                        <td>7</td>
+                                        <td>8</td>
+                                        <td>9</td>
+                                        <td style="background-color: rgba(10, 79, 139, 0.1);">
+                                            <strong>10</strong>
+                                            <div class="badge bg-primary">เรียน</div>
+                                        </td>
+                                        <td>11</td>
+                                        <td>12</td>
+                                    </tr>
+                                    <tr class="text-center">
+                                        <td>13</td>
+                                        <td>14</td>
+                                        <td>15</td>
+                                        <td>16</td>
+                                        <td style="background-color: rgba(10, 79, 139, 0.1);">
+                                            <strong>17</strong>
+                                            <div class="badge bg-primary">เรียน</div>
+                                        </td>
+                                        <td style="background-color: rgba(220, 53, 69, 0.1);">
+                                            <strong>18</strong>
+                                            <div class="badge bg-danger">กำหนดส่ง</div>
+                                        </td>
+                                        <td>19</td>
+                                    </tr>
+                                    <tr class="text-center">
+                                        <td>20</td>
+                                        <td>21</td>
+                                        <td>22</td>
+                                        <td>23</td>
+                                        <td style="background-color: rgba(10, 79, 139, 0.1);">
+                                            <strong>24</strong>
+                                            <div class="badge bg-primary">เรียน</div>
+                                        </td>
+                                        <td>25</td>
+                                        <td>26</td>
+                                    </tr>
+                                    <tr class="text-center">
+                                        <td>27</td>
+                                        <td>28</td>
+                                        <td>29</td>
+                                        <td>30</td>
+                                        <td class="text-muted">1</td>
+                                        <td class="text-muted">2</td>
+                                        <td class="text-muted">3</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="d-flex justify-content-end">
+                                <button class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-sync-alt me-1"></i>ซิงค์กับ Google Calendar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <!-- Upcoming Events -->
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="fas fa-clock me-2"></i>กำหนดการที่ใกล้เข้ามา</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex align-items-center p-3">
+                                <div class="bg-primary text-white rounded-circle p-2 me-3" style="width: 45px; height: 45px;">
+                                    <div class="text-center">
+                                        <small>พฤ.</small>
+                                        <div><strong>10</strong></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">บรรยาย: SQL Basics</h6>
+                                    <small class="text-muted">13:00 - 16:00 น. ห้อง IT-301</small>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex align-items-center p-3">
+                                <div class="bg-danger text-white rounded-circle p-2 me-3" style="width: 45px; height: 45px;">
+                                    <div class="text-center">
+                                        <small>ศ.</small>
+                                        <div><strong>18</strong></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">กำหนดส่ง: แบบฝึกหัด ER Diagram</h6>
+                                    <small class="text-muted">ก่อน 23:59 น.</small>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex align-items-center p-3">
+                                <div class="bg-primary text-white rounded-circle p-2 me-3" style="width: 45px; height: 45px;">
+                                    <div class="text-center">
+                                        <small>พฤ.</small>
+                                        <div><strong>24</strong></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">บรรยาย: Database Normalization</h6>
+                                    <small class="text-muted">13:00 - 16:00 น. ห้อง IT-301</small>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex align-items-center p-3">
+                                <div class="bg-warning text-white rounded-circle p-2 me-3" style="width: 45px; height: 45px;">
+                                    <div class="text-center">
+                                        <small>พ.</small>
+                                        <div><strong>7</strong></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0">สอบกลางภาค</h6>
+                                    <small class="text-muted">13:00 - 15:00 น. ห้อง IT-401</small>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-footer bg-light text-center">
+                        <a href="#" class="btn btn-sm btn-outline-primary">ดูกำหนดการทั้งหมด</a>
+                    </div>
+                </div>
+
+                <!-- Notifications -->
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-secondary text-white">
+                        <h5 class="mb-0"><i class="fas fa-bell me-2"></i>การแจ้งเตือน</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" id="emailNotif" checked>
+                            <label class="form-check-label" for="emailNotif">แจ้งเตือนทาง Email</label>
+                        </div>
+                        <div class="form-check form-switch mb-3">
+                            <input class="form-check-input" type="checkbox" id="browserNotif" checked>
+                            <label class="form-check-label" for="browserNotif">แจ้งเตือนบน Browser</label>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="reminderNotif" checked>
+                            <label class="form-check-label" for="reminderNotif">แจ้งเตือนล่วงหน้า (24 ชม.)</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3. ส่วนฟอร์มส่งงาน -->
+<section id="submit" class="py-5 bg-light-custom">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="section-title">ส่งงาน / แบบฝึกหัด</h2>
+                <p class="mb-4">ส่งงานที่ได้รับมอบหมายและแบบฝึกหัดได้ที่นี่</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8 mb-4">
+                <!-- Upload Form -->
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-primary text-white py-3">
+                        <h5 class="mb-0"><i class="fas fa-upload me-2"></i>อัพโหลดงาน</h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <form>
+                            <div class="mb-3">
+                                <label for="assignmentSelect" class="form-label">เลือกงานที่ต้องการส่ง</label>
+                                <select class="form-select" id="assignmentSelect">
+                                    <option selected disabled>-- เลือกงาน --</option>
+                                    <option>แบบฝึกหัดที่ 1: พื้นฐานฐานข้อมูล</option>
+                                    <option>แบบฝึกหัดที่ 2: ER Diagram</option>
+                                    <option>งานกลุ่ม: ออกแบบฐานข้อมูลร้านค้า</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="studentId" class="form-label">รหัสนักศึกษา</label>
+                                <input type="text" class="form-control" id="studentId" placeholder="633xxxxxxx">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="studentName" class="form-label">ชื่อ-นามสกุล</label>
+                                <input type="text" class="form-control" id="studentName">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="uploadFile" class="form-label">ไฟล์งาน (สูงสุด 10MB)</label>
+                                <input class="form-control" type="file" id="uploadFile">
+                                <div class="form-text">รองรับไฟล์: .pdf, .doc, .docx, .zip, .sql, .txt</div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="comments" class="form-label">หมายเหตุ (optional)</label>
+                                <textarea class="form-control" id="comments" rows="3" placeholder="คำอธิบายเพิ่มเติมเกี่ยวกับงานที่ส่ง"></textarea>
+                            </div>
+                            
+                            <div class="form-check mb-4">
+                                <input class="form-check-input" type="checkbox" id="honesty">
+                                <label class="form-check-label" for="honesty">
+                                    ข้าพเจ้าขอรับรองว่างานนี้เป็นผลงานของข้าพเจ้าจริง ไม่ได้คัดลอกหรือนำผลงานของผู้อื่นมาส่ง
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary px-4">
+                                <i class="fas fa-paper-plane me-2"></i>ส่งงาน
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <!-- Assignment Status -->
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="fas fa-tasks me-2"></i>สถานะงาน</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <div>
+                                    <h6 class="mb-1">แบบฝึกหัดที่ 1: พื้นฐานฐานข้อมูล</h6>
+                                    <small class="text-muted">ส่งเมื่อ: 01/04/2025</small>
+                                </div>
+                                <span class="badge bg-success rounded-pill">ส่งแล้ว</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <div>
+                                    <h6 class="mb-1">แบบฝึกหัดที่ 2: ER Diagram</h6>
+                                    <small class="text-muted">กำหนดส่ง: 18/04/2025</small>
+                                </div>
+                                <span class="badge bg-warning text-dark rounded-pill">รอส่ง</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <div>
+                                    <h6 class="mb-1">งานกลุ่ม: ออกแบบฐานข้อมูลร้านค้า</h6>
+                                    <small class="text-muted">กำหนดส่ง: 15/05/2025</small>
+                                </div>
+                                <span class="badge bg-warning text-dark rounded-pill">รอส่ง</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Submission Tips -->
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0"><i class="fas fa-lightbulb me-2"></i>คำแนะนำการส่งงาน</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="mb-0">
+                            <li class="mb-2">ตั้งชื่อไฟล์ให้เป็นรหัสนักศึกษา ตามด้วยชื่องาน เช่น <code>633xxxxxx_ER_Diagram.pdf</code></li>
+                            <li class="mb-2">ตรวจสอบไฟล์ให้แน่ใจว่าสมบูรณ์ก่อนส่ง</li>
+                            <li class="mb-2">ส่งงานก่อนกำหนดส่งอย่างน้อย 1 วัน เพื่อรองรับปัญหาทางเทคนิค</li>
+                            <li>หากมีปัญหาในการส่งงาน ให้ติดต่ออาจารย์ผู้สอนทันที</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 4. ส่วนดาวน์โหลด -->
+<section id="download" class="py-5">
+    <div class="container">
+        <h2 class="section-title">ดาวน์โหลดเอกสาร</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="download-item text-center">
+                    <div class="download-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h4>คู่มือการใช้งาน</h4>
+                    <p>คู่มือแนะนำการใช้งานระบบสำหรับผู้เรียน (PDF, 2.5MB)</p>
+                    <button class="btn download-btn">
+                        <i class="fas fa-download me-2"></i>ดาวน์โหลด
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="download-item text-center">
+                    <div class="download-icon">
+                        <i class="fas fa-file-word"></i>
+                    </div>
+                    <h4>แบบฝึกหัด</h4>
+                    <p>แบบฝึกหัดเพิ่มเติมสำหรับทบทวนบทเรียน (DOC, 1.8MB)</p>
+                    <button class="btn download-btn">
+                        <i class="fas fa-download me-2"></i>ดาวน์โหลด
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="download-item text-center">
+                    <div class="download-icon">
+                        <i class="fas fa-file-powerpoint"></i>
+                    </div>
+                    <h4>สไลด์นำเสนอ</h4>
+                    <p>สไลด์ประกอบการสอนบทเรียนทั้งหมด (PPT, 5.3MB)</p>
+                    <button class="btn download-btn">
+                        <i class="fas fa-download me-2"></i>ดาวน์โหลด
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="download-item text-center">
+                    <div class="download-icon">
+                        <i class="fas fa-file-code"></i>
+                    </div>
+                    <h4>โค้ดตัวอย่าง</h4>
+                    <p>ไฟล์โค้ดตัวอย่างสำหรับบทเรียนทั้งหมด (ZIP, 8.2MB)</p>
+                    <button class="btn download-btn">
+                        <i class="fas fa-download me-2"></i>ดาวน์โหลด
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="download-item text-center">
+                    <div class="download-icon">
+                        <i class="fas fa-file-excel"></i>
+                    </div>
+                    <h4>ตารางข้อมูล</h4>
+                    <p>ตารางข้อมูลสำหรับใช้ประกอบการเรียน (XLS, 1.2MB)</p>
+                    <button class="btn download-btn">
+                        <i class="fas fa-download me-2"></i>ดาวน์โหลด
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="download-item text-center">
+                    <div class="download-icon">
+                        <i class="fas fa-file-video"></i>
+                    </div>
+                    <h4>วิดีโอบทเรียน</h4>
+                    <p>วิดีโอสรุปบทเรียนสำคัญทั้งหมด (MP4, 150MB)</p>
+                    <button class="btn download-btn">
+                        <i class="fas fa-download me-2"></i>ดาวน์โหลด
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- ส่วนคำถามที่พบบ่อย -->
+    <section id="faq" class="faq-section py-5">
+        <div class="container">
+            <h2 class="section-title">คำถามที่พบบ่อย</h2>
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <i class="fas fa-question-circle me-2"></i>หลักสูตรนี้เหมาะสำหรับผู้เรียนระดับใด?
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            หลักสูตรนี้ออกแบบมาสำหรับผู้เรียนระดับเริ่มต้นถึงระดับกลาง ผู้เรียนควรมีความรู้พื้นฐานเกี่ยวกับการใช้คอมพิวเตอร์ แต่ไม่จำเป็นต้องมีประสบการณ์การเขียนโปรแกรมมาก่อน เราจะเริ่มสอนตั้งแต่พื้นฐานและค่อยๆ เพิ่มความซับซ้อนขึ้นเรื่อยๆ
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <i class="fas fa-question-circle me-2"></i>ฉันจะได้รับประกาศนียบัตรเมื่อเรียนจบหรือไม่?
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            ใช่ ผู้เรียนที่เข้าเรียนครบตามหลักสูตรและผ่านการทดสอบในแต่ละบทเรียนด้วยคะแนนไม่ต่ำกว่า 70% จะได้รับประกาศนียบัตรรับรองการผ่านหลักสูตร ซึ่งสามารถดาวน์โหลดได้จากระบบหลังจากเรียนจบ
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <i class="fas fa-question-circle me-2"></i>มีการสนับสนุนหรือให้คำปรึกษาหลังจากเรียนจบหรือไม่?
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            เรามีกลุ่มชุมชนออนไลน์สำหรับผู้เรียนในหลักสูตร ซึ่งผู้สอนและผู้เชี่ยวชาญจะเข้ามาให้คำแนะนำและตอบคำถามเป็นประจำ นอกจากนี้ ผู้เรียนยังสามารถส่งคำถามผ่านระบบติดต่อได้โดยตรง และจะได้รับการตอบกลับภายใน 24-48 ชั่วโมง
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            <i class="fas fa-question-circle me-2"></i>ฉันสามารถเข้าถึงเนื้อหาได้นานแค่ไหนหลังจากลงทะเบียน?
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            ผู้เรียนสามารถเข้าถึงเนื้อหาทั้งหมดของหลักสูตรได้เป็นเวลา 1 ปีเต็มหลังจากวันที่ลงทะเบียน หากต้องการต่ออายุการเข้าถึงหลังจากหมดอายุ สามารถชำระค่าธรรมเนียมต่ออายุในราคาพิเศษสำหรับนักเรียนเก่าได้
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingFive">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            <i class="fas fa-question-circle me-2"></i>มีการอัพเดตเนื้อหาหรือไม่?
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            ใช่ เราอัพเดตเนื้อหาของหลักสูตรเป็นประจำเพื่อให้ทันสมัยกับเทคโนโลยีที่เปลี่ยนแปลงไป โดยผู้เรียนจะได้รับการแจ้งเตือนผ่านอีเมลเมื่อมีการอัพเดตเนื้อหาใหม่ และสามารถเข้าถึงเนื้อหาที่อัพเดตได้ทันทีโดยไม่มีค่าใช้จ่ายเพิ่มเติม
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ส่วนผู้สอน & ติดต่อ -->
+   <!-- <section id="instructors-contact" class="py-5"> -->
+    <section id="teacher" class="py-5"></section>
+        <div class="container">
+            <h2 class="section-title">ผู้สอน & ติดต่อ</h2>
+            
+            <!-- ส่วนผู้สอน -->
+            <div class="row mb-5">
+                <div class="col-md-4 mb-4">
+                    <div class="instructor-card">
+                        <img src="imgs/1.png" alt="อาจารย์กิตติทัช" class="img-fluid instructor-image">
+                        <div class="card-body text-center">
+                            <h4>อาจารย์กิตติทัช สืบธรรมกูร</h4>
+                            <p class="text-muted">ผู้เชี่ยวชาญด้าน Frontend Development</p>
+                            <p>มีประสบการณ์การสอนและพัฒนาเว็บไซต์มากกว่า 10 ปี เชี่ยวชาญด้าน HTML, CSS และ JavaScript</p>
+                            <div class="social-icons">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="instructor-card">
+                        <img src="imgs/2.png" alt="อาจารย์กิตติทัช" class="img-fluid instructor-image">
+                        <div class="card-body text-center">
+                            <h4>อาจารย์กิตติทัช สืบธรรมกูร</h4>
+                            <p class="text-muted">ผู้เชี่ยวชาญด้าน UX/UI Design</p>
+                            <p>อดีตนักออกแบบ UX/UI ที่บริษัทชั้นนำ มีประสบการณ์การสอนออกแบบเว็บไซต์มากกว่า 8 ปี</p>
+                            <div class="social-icons">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-behance"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="instructor-card">
+                        <img src="imgs/1.png" alt="อาจารย์กิตติทัช" class="img-fluid instructor-image">
+                        <div class="card-body text-center">
+                            <h4>อาจารย์กิตติทัช สืบธรรมกูร</h4>
+                            <p class="text-muted">ผู้เชี่ยวชาญด้าน Backend Development</p>
+                            <p>ผู้พัฒนาระบบสำหรับองค์กรขนาดใหญ่ มีความเชี่ยวชาญด้าน Node.js, PHP และฐานข้อมูล</p>
+                            <div class="social-icons">
+                                <a href="#"><i class="fab fa-github"></i></a>
+                                <a href="#"><i class="fab fa-youtube"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ส่วนติดต่อ -->
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="contact-info">
+                        <h3 class="mb-4">ข้อมูลติดต่อ</h3>
+                        <div class="d-flex align-items-center mb-3">
+                            <span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
+                            <div>
+                                <h5 class="mb-0">ที่อยู่</h5>
+                                <p class="mb-0">55/1 หมู่บ้านพรประสิทธิ์ หมู่ที่ 17 ต.บ่อแฮ้ว อ.เมือง จ.ลำปาง 52100</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <span class="contact-icon"><i class="fas fa-phone"></i></span>
+                            <div>
+                                <h5 class="mb-0">โทรศัพท์</h5>
+                                <p class="mb-0">08-480-46396, 084-804-6396</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+                            <div>
+                                <h5 class="mb-0">อีเมล</h5>
+                                <p class="mb-0">contact@example.com, support@example.com</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <span class="contact-icon"><i class="fas fa-clock"></i></span>
+                            <div>
+                                <h5 class="mb-0">เวลาทำการ</h5>
+                                <p class="mb-0">จันทร์ - ศุกร์: 9:00 - 17:00 น.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="contact-form">
+                        <h3 class="mb-4">ส่งข้อความถึงเรา</h3>
+                        <form id="contactForm">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="ชื่อ-นามสกุล *" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" placeholder="อีเมล *" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="หัวข้อ *" required>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="5" placeholder="ข้อความ *" required></textarea>
+                            </div>
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-primary">ส่งข้อความ</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // JavaScript สำหรับการดาวน์โหลดเอกสาร
+        document.querySelectorAll('.download-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const fileName = this.closest('.download-item').querySelector('h4').innerText;
+                alert(`กำลังเริ่มดาวน์โหลด: ${fileName}`);
+                // ในสถานการณ์จริง คุณจะใช้โค้ดที่เชื่อมต่อกับไฟล์จริง
+            });
+        });
+
+        // JavaScript สำหรับการส่งแบบฟอร์มติดต่อ
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formElements = this.elements;
+            let formData = {};
+            
+            for (let i = 0; i < formElements.length; i++) {
+                if (formElements[i].type !== 'submit') {
+                    formData[formElements[i].placeholder] = formElements[i].value;
+                }
+            }
+            
+            console.log('ข้อมูลที่ส่ง:', formData);
+            alert('ส่งข้อความเรียบร้อยแล้ว! เราจะติดต่อกลับโดยเร็วที่สุด');
+            this.reset();
+        });
+
+        // JavaScript สำหรับเพิ่มเอฟเฟกต์การแสดงผลคำถามที่พบบ่อย
+        const accordionItems = document.querySelectorAll('.accordion-item');
+        
+        accordionItems.forEach(item => {
+            const header = item.querySelector('.accordion-header');
+            header.addEventListener('click', function() {
+                const wasExpanded = header.querySelector('.accordion-button').getAttribute('aria-expanded') === 'true';
+                
+                // รีเซ็ตทุกรายการก่อน
+                accordionItems.forEach(otherItem => {
+                    const otherButton = otherItem.querySelector('.accordion-button');
+                    otherButton.classList.add('collapsed');
+                    otherButton.setAttribute('aria-expanded', 'false');
+                    otherItem.querySelector('.accordion-collapse').classList.remove('show');
+                });
+                
+                // ถ้าคลิกที่รายการที่กำลังเปิดอยู่แล้ว ให้ปิด (ทำไปแล้วข้างบน)
+                // ถ้าคลิกที่รายการที่ปิดอยู่ ให้เปิด
+                if (!wasExpanded) {
+                    const button = header.querySelector('.accordion-button');
+                    const collapse = item.querySelector('.accordion-collapse');
+                    button.classList.remove('collapsed');
+                    button.setAttribute('aria-expanded', 'true');
+                    collapse.classList.add('show');
+                }
+            }, false);
+        });
+    </script>
+
+<!-- ส่วน Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <!-- ส่วนของข้อมูลเกี่ยวกับบริษัท/เว็บไซต์ -->
+            <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                <img src="/api/placeholder/150/60" alt="Logo" class="logo">
+                <p class="mb-3">บริษัทของเราเป็นผู้นำในการให้บริการที่มีคุณภาพ มุ่งมั่นในการสร้างความพึงพอใจให้ลูกค้าทุกท่านด้วยบริการที่เหนือชั้น</p>
+                <ul class="social-icons">
+                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                    <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                </ul>
+            </div>
+            
+            <!-- ส่วนของลิงก์ที่มีประโยชน์ -->
+            <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                <h5>ลิงก์ที่มีประโยชน์</h5>
+                <ul class="footer-links">
+                    <li><a href="#">หน้าหลัก</a></li>
+                    <li><a href="#">เกี่ยวกับเรา</a></li>
+                    <li><a href="#">บริการ</a></li>
+                    <li><a href="#">ผลงาน</a></li>
+                    <li><a href="#">ติดต่อเรา</a></li>
+                </ul>
+            </div>
+            
+            <!-- ส่วนของบริการ -->
+            <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                <h5>บริการของเรา</h5>
+                <ul class="footer-links">
+                    <li><a href="#">ออกแบบเว็บไซต์</a></li>
+                    <li><a href="#">พัฒนาแอปพลิเคชัน</a></li>
+                    <li><a href="#">การตลาดดิจิทัล</a></li>
+                    <li><a href="#">กราฟิกดีไซน์</a></li>
+                    <li><a href="#">SEO</a></li>
+                </ul>
+            </div>
+            
+            <!-- ส่วนของการติดต่อและจดหมายข่าว -->
+            <div class="col-lg-4 col-md-6">
+                <h5>ติดต่อเรา</h5>
+                <div class="contact-info">
+                    <p><i class="fas fa-map-marker-alt"></i> 123 ถนนสุขุมวิท เขตวัฒนา กรุงเทพฯ 10110</p>
+                    <p><i class="fas fa-phone"></i> 02-123-4567</p>
+                    <p><i class="fas fa-envelope"></i> contact@yourwebsite.com</p>
+                </div>
+                
+                <h5 class="mt-4">รับข่าวสาร</h5>
+                <p>ลงทะเบียนเพื่อรับข่าวสารและโปรโมชั่นล่าสุดจากเรา</p>
+                <form class="newsletter-form">
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="อีเมลของคุณ" required>
+                        <button type="submit" class="btn"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- ส่วนลิขสิทธิ์ด้านล่าง -->
+        <div class="row footer-bottom">
+            <div class="col-md-6">
+                <p>&copy; <span id="current-year"></span> ชื่อเว็บไซต์หรือบริษัทของคุณ. สงวนลิขสิทธิ์.</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <p><a href="#" class="text-white">นโยบายความเป็นส่วนตัว</a> | <a href="#" class="text-white">เงื่อนไขการใช้งาน</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- ปุ่มกลับขึ้นด้านบน -->
+<button id="back-to-top" title="กลับขึ้นด้านบน">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- เรียกใช้ Bootstrap Bundle กับ Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- JavaScript สำหรับฟังก์ชันต่างๆ -->
+<script>
+    // ตั้งค่าปีปัจจุบัน
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+    
+    // ปุ่มกลับขึ้นด้านบน
+    window.onscroll = function() {scrollFunction()};
+    
+    function scrollFunction() {
+        const backToTopBtn = document.getElementById("back-to-top");
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            backToTopBtn.style.display = "flex";
+        } else {
+            backToTopBtn.style.display = "none";
+        }
+    }
+    
+    document.getElementById('back-to-top').addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+    
+    // การส่งฟอร์มจดหมายข่าว
+    document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = this.querySelector('input[type="email"]').value;
+        
+        // ที่นี่คุณสามารถเพิ่มโค้ดสำหรับส่งข้อมูลไปยังเซิร์ฟเวอร์ได้
+        alert(`ขอบคุณสำหรับการลงทะเบียน ${email}`);
+        this.reset();
+    });
+</script>
+
+</body>
+</html>

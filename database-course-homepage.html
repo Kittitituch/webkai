@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>การจัดการฐานข้อมูลเบื้องต้น | หน้าแรก</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0a4f8b;
+            --secondary-color: #4CAF50;
+            --light-color: #f8f9fa;
+            --dark-color: #1a2a3a;
+            --bg-color: #ffffff;
+        }
+        
+        body {
+            font-family: 'Prompt', sans-serif;
+            color: #333;
+            background-color: var(--bg-color);
+            overflow-x: hidden;
+        }
+        
+        .navbar {
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+        
+        .navbar-brand {
+            font-family: 'Kanit', sans-serif;
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+        
+        .nav-link {
+            font-size: 1rem;
+            font-weight: 500;
+            margin: 0 10px;
+            color: white !important;
+            transition: all 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: var(--secondary-color) !important;
+            transform: translateY(-2px);
+        }
+        
+        .nav-link.active {
+            color: var(--secondary-color) !important;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(10, 79, 139, 0.8), rgba(26, 42, 58, 0.8)), url('/api/placeholder/1200/600') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 120px 0;
+            position: relative;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-family: 'Kanit', sans-serif;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 10px 25px;
+            font-weight: 500;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background-color: #083b6f;
+            border-color: #083b6f;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(10, 79, 139, 0.3);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            padding: 10px 25px;
+            font-weight: 500;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #3d8b3d;
+            border-color: #3d8b3d;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 40px;
+            font-weight: 600;
+            color: var(--primary-color);
+            display: inline-block;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 60%;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .timeline {
+            list-style-type: none;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline:before {
+            content: ' ';
+            background: var(--secondary-color);
+            width: 3px;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item:before {
+            content: ' ';
+            background: white;
+            border: 3px solid var(--secondary-color);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            left: -38px;
+            top: 0;
+        }
+        
+        .timeline-date {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .teacher-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        
+        .teacher-img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .teacher-info {
+            padding: 20px;
+        }
+        
+        .teacher-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+        
+        .teacher-position {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        .teacher-contact {
+            margin-top: 15px;
+        }
+        
+        .teacher-contact a {
+            margin-right: 10px;
+            color: var(--dark-color);
+            transition: all 0.3s;
+        }
+        
+        .teacher-contact a:hover {
+            color: var(--primary-color);
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-title:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+        
+        .footer-links a {
+            display: block;
+            margin-bottom: 10px;
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .footer-contact li {
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+        
+        .footer-contact i {
+            color: var(--secondary-color);
+            margin-right: 10px;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            margin-top: 40px;
+        }
+        
+        .quick-access {
+            padding: 60px 0;
+            background-color: var(--light-color);
+        }
+        
+        .quick-card {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            height: 100%;
+        }
+        
+        .quick-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .quick-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .quick-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .bg-light-custom {
+            background-color: var(--light-color);
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .navbar-collapse {
+                background-color: var(--primary-color);
+                padding: 20px;
+                border-radius: 0 0 10px 10px;
+            }
+            
+            .hero-section {
+                padding: 80px 0;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-database me-2"></i>การจัดการฐานข้อมูลเบื้องต้น
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#"><i class="fas fa-home me-1"></i> หน้าแรก</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about"><i class="fas fa-info-circle me-1"></i> เกี่ยวกับรายวิชา</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#lessons"><i class="fas fa-book me-1"></i> เนื้อหาวิชา</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#schedule"><i class="fas fa-calendar-alt me-1"></i> ปฏิทินเรียน</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#download"><i class="fas fa-download me-1"></i> ดาวน์โหลด</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#submit"><i class="fas fa-upload me-1"></i> ส่งงาน</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#faq"><i class="fas fa-question-circle me-1"></i> FAQ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#teacher"><i class="fas fa-user me-1"></i> ผู้สอน</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 hero-content">
+                    <h1 class="hero-title">การจัดการฐานข้อมูลเบื้องต้น</h1>
+                    <p class="hero-subtitle">พัฒนาทักษะการจัดการฐานข้อมูลเพื่อการทำงานในยุคดิจิทัล</p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="#lessons" class="btn btn-primary me-3 mb-2"><i class="fas fa-book me-2"></i>เข้าสู่บทเรียน</a>
+                        <a href="#download" class="btn btn-secondary me-3 mb-2"><i class="fas fa-download me-2"></i>ดาวน์โหลดเอกสาร</a>
+                        <a href="#submit" class="btn btn-light mb-2"><i class="fas fa-upload me-2"></i>ส่งงาน</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 d-none d-lg-block">
+                    <div class="teacher-welcome text-center">
+                        <img src="/api/placeholder/300/300" alt="ผศ.ดร.มะยุรีย์" class="img-fluid rounded-circle mb-3" style="border: 5px solid white;">
+                        <h5 class="text-white">ผศ.ดร.มะยุรีย์</h5>
+                        <p class="text-light">อาจารย์ผู้สอนประจำรายวิชา</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Welcome Message -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h2 class="section-title text-center">ยินดีต้อนรับสู่รายวิชาการจัดการฐานข้อมูลเบื้องต้น</h2>
+                </div>
+            </div>
+            <div class="row mt-4 justify-content-center">
+                <div class="col-md-10">
+                    <div class="p-4 bg-light-custom rounded-3 shadow-sm">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="/api/placeholder/80/80" alt="ผศ.ดร.มะยุรีย์" class="rounded-circle me-3" style="width: 80px; height: 80px; object-fit: cover;">
+                            <div>
+                                <h5 class="mb-1" style="color: var(--primary-color);">ผศ.ดร.มะยุรีย์</h5>
+                                <p class="mb-0 text-muted">อาจารย์ผู้สอนประจำรายวิชา</p>
+                            </div>
+                        </div>
+                        <p>
+                            สวัสดีนักศึกษาทุกคน ยินดีต้อนรับสู่รายวิชาการจัดการฐานข้อมูลเบื้องต้น รายวิชานี้จะพาทุกคนเรียนรู้หลักการพื้นฐานของการจัดการฐานข้อมูล 
+                            ตั้งแต่การออกแบบ การสร้าง การเขียนคำสั่ง SQL ไปจนถึงการบริหารจัดการฐานข้อมูลอย่างมีประสิทธิภาพ
+                        </p>
+                        <p>
+                            เว็บไซต์นี้ถูกออกแบบมาเพื่อเป็นแหล่งรวมทรัพยากรการเรียนรู้ทั้งหมด ไม่ว่าจะเป็นเนื้อหา เอกสารประกอบการสอน วิดีโอการสอน แบบฝึกหัด และปฏิทินการเรียน 
+                            ขอให้นักศึกษาทุกคนใช้ประโยชน์จากทรัพยากรเหล่านี้อย่างเต็มที่ และหากมีคำถามหรือข้อสงสัยใดๆ สามารถติดต่อผู้สอนได้ตลอดเวลา
+                        </p>
+                        <p class="mb-0">
+                            ขอให้ทุกคนมีความสุขกับการเรียนรู้ และประสบความสำเร็จในรายวิชานี้
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Access Section -->
+    <section class="quick-access py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-4">
+                    <h2 class="section-title text-center">เข้าถึงด่วน</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="quick-card">
+                        <div class="quick-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3 class="quick-title">เนื้อหาวิชา</h3>
+                        <p>เข้าถึงบทเรียนทั้งหมด วิดีโอ และแบบฝึกหัด</p>
+                        <a href="#lessons" class="btn btn-primary mt-3">เข้าชม</a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="quick-card">
+                        <div class="quick-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3 class="quick-title">ปฏิทินเรียน</h3>
+                        <p>ตารางเรียนและกำหนดส่งงานทั้งหมด</p>
+                        <a href="#schedule" class="btn btn-primary mt-3">เข้าชม</a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="quick-card">
+                        <div class="quick-icon">
+                            <i class="fas fa-download"></i>
+                        </div>
+                        <h3 class="quick-title">ดาวน์โหลด</h3>
+                        <p>เอกสารประกอบการเรียนและโค้ดตัวอย่าง</p>
+                        <a href="#download" class="btn btn-primary mt-3">เข้าชม</a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="quick-card">
+                        <div class="quick-icon">
+                            <i class="fas fa-upload"></i>
+                        </div>
+                        <h3 class="quick-title">ส่งงาน</h3>
+                        <p>อัปโหลดงานและแบบฝึกหัดที่ได้รับมอบหมาย</p>
+                        <a href="#submit" class="btn btn-primary mt-3">เข้าชม</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Course Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="section-title">เกี่ยวกับรายวิชา</h2>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3 class="feature-title">วัตถุประสงค์รายวิชา</h3>
+                        <ul class="mt-3">
+                            <li>เข้าใจแนวคิดพื้นฐานของระบบฐานข้อมูล</li>
+                            <li>สามารถออกแบบและสร้างฐานข้อมูลได้อย่างมีประสิทธิภาพ</li>
+                            <li>เขียนคำสั่ง SQL เพื่อจัดการข้อมูลได้</li>
+                            <li>เข้าใจการทำ Normalization และการสร้าง ER Diagram</li>
+                            <li>ประยุกต์ใช้งานฐานข้อมูลในงานจริงได้</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3 class="feature-title">ผลการเรียนรู้ที่คาดหวัง</h3>
+                        <ul class="mt-3">
+                            <li>ออกแบบและสร้างฐานข้อมูลที่มีประสิทธิภาพได้</li>
+                            <li>เขียนคำสั่ง SQL ระดับพื้นฐานและปานกลางได้</li>
+                            <li>วิเคราะห์ปัญหาและออกแบบฐานข้อมูลที่เหมาะสมกับความต้องการได้</li>
+                            <li>ใช้งานเครื่องมือบริหารจัดการฐานข้อมูลเช่น phpMyAdmin ได้</li>
+                            <li>เชื่อมต่อฐานข้อมูลกับแอปพลิเคชันได้</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h3 class="feature-title">เนื้อหารายวิชา</h3>
+                        <ul class="mt-3">
+                            <li>แนวคิดพื้นฐานของระบบฐานข้อมูล</li>
+                            <li>การออกแบบฐานข้อมูลและ ER Diagram</li>
+                            <li>ภาษา SQL (SELECT, INSERT, UPDATE, DELETE)</li>
+                            <li>การทำ Normalization</li>
+                            <li>การสร้างและจัดการ Indexes</li>
+                            <li>Transaction และ Concurrency Control</li>
+                            <li>Data Security และการจัดการสิทธิ์</li>
+                            <li>การเชื่อมต่อฐานข้อมูลกับแอปพลิเคชัน</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3 class="feature-title">เกณฑ์การวัดผล</h3>
+                        <div class="mt-3">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>การสอบกลางภาค</span>
+                                <span>25%</span>
+                            </div>
+                            <div class="progress mb-3" style="height: 10px;">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>การสอบปลายภาค</span>
+                                <span>30%</span>
+                            </div>
+                            <div class="progress mb-3" style="height: 10px;">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>แบบฝึกหัดและงานที่ได้รับมอบหมาย</span>
+                                <span>25%</span>
+                            </div>
+                            <div class="progress mb-3" style="height: 10px;">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>โครงงานกลุ่ม</span>
+                                <span>15%</span>
+                            </div>
+                            <div class="progress mb-3" style="height: 10px;">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>การมีส่วนร่วมในชั้นเรียน</span>
+                                <span>5%</span>
+                            </div>
+                            <div class="progress mb-3" style="height: 10px;">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 5%" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lessons Preview -->
+    <section id="lessons" class="py-5 bg-light-custom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="section-title">เนื้อหาวิชา / บทเรียน</h2>
+                </div>
+            </div>

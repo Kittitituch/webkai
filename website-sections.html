@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เว็บไซต์หลักสูตร</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+        
+        .section-title {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: var(--secondary-color);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        /* ส่วนดาวน์โหลดเอกสาร */
+        .download-item {
+            background: var(--light-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .download-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .download-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .download-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            transition: all 0.3s;
+        }
+        
+        .download-btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        /* ส่วนคำถามที่พบบ่อย */
+        .faq-section {
+            background-color: var(--light-color);
+        }
+        
+        .accordion-button:not(.collapsed) {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: var(--primary-color);
+        }
+        
+        /* ส่วนผู้สอน & ติดต่อ */
+        .instructor-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .instructor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .instructor-image {
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--secondary-color);
+            transform: scale(1.1);
+        }
+        
+        .contact-info {
+            background-color: var(--light-color);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+        
+        .contact-form .form-control {
+            border-radius: 0;
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-form .form-control:focus {
+            box-shadow: none;
+            border-color: var(--primary-color);
+        }
+        
+        .contact-form .btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            transition: all 0.3s;
+        }
+        
+        .contact-form .btn:hover {
+            background-color: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ส่วนดาวน์โหลดเอกสาร -->
+    <section id="downloads" class="py-5">
+        <div class="container">
+            <h2 class="section-title">ดาวน์โหลดเอกสาร</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="download-item text-center">
+                        <div class="download-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <h4>คู่มือการใช้งาน</h4>
+                        <p>คู่มือแนะนำการใช้งานระบบสำหรับผู้เรียน (PDF, 2.5MB)</p>
+                        <button class="btn download-btn">
+                            <i class="fas fa-download me-2"></i>ดาวน์โหลด
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="download-item text-center">
+                        <div class="download-icon">
+                            <i class="fas fa-file-word"></i>
+                        </div>
+                        <h4>แบบฝึกหัด</h4>
+                        <p>แบบฝึกหัดเพิ่มเติมสำหรับทบทวนบทเรียน (DOC, 1.8MB)</p>
+                        <button class="btn download-btn">
+                            <i class="fas fa-download me-2"></i>ดาวน์โหลด
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="download-item text-center">
+                        <div class="download-icon">
+                            <i class="fas fa-file-powerpoint"></i>
+                        </div>
+                        <h4>สไลด์นำเสนอ</h4>
+                        <p>สไลด์ประกอบการสอนบทเรียนทั้งหมด (PPT, 5.3MB)</p>
+                        <button class="btn download-btn">
+                            <i class="fas fa-download me-2"></i>ดาวน์โหลด
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="download-item text-center">
+                        <div class="download-icon">
+                            <i class="fas fa-file-code"></i>
+                        </div>
+                        <h4>โค้ดตัวอย่าง</h4>
+                        <p>ไฟล์โค้ดตัวอย่างสำหรับบทเรียนทั้งหมด (ZIP, 8.2MB)</p>
+                        <button class="btn download-btn">
+                            <i class="fas fa-download me-2"></i>ดาวน์โหลด
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="download-item text-center">
+                        <div class="download-icon">
+                            <i class="fas fa-file-excel"></i>
+                        </div>
+                        <h4>ตารางข้อมูล</h4>
+                        <p>ตารางข้อมูลสำหรับใช้ประกอบการเรียน (XLS, 1.2MB)</p>
+                        <button class="btn download-btn">
+                            <i class="fas fa-download me-2"></i>ดาวน์โหลด
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="download-item text-center">
+                        <div class="download-icon">
+                            <i class="fas fa-file-video"></i>
+                        </div>
+                        <h4>วิดีโอบทเรียน</h4>
+                        <p>วิดีโอสรุปบทเรียนสำคัญทั้งหมด (MP4, 150MB)</p>
+                        <button class="btn download-btn">
+                            <i class="fas fa-download me-2"></i>ดาวน์โหลด
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ส่วนคำถามที่พบบ่อย -->
+    <section id="faq" class="faq-section py-5">
+        <div class="container">
+            <h2 class="section-title">คำถามที่พบบ่อย</h2>
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <i class="fas fa-question-circle me-2"></i>หลักสูตรนี้เหมาะสำหรับผู้เรียนระดับใด?
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            หลักสูตรนี้ออกแบบมาสำหรับผู้เรียนระดับเริ่มต้นถึงระดับกลาง ผู้เรียนควรมีความรู้พื้นฐานเกี่ยวกับการใช้คอมพิวเตอร์ แต่ไม่จำเป็นต้องมีประสบการณ์การเขียนโปรแกรมมาก่อน เราจะเริ่มสอนตั้งแต่พื้นฐานและค่อยๆ เพิ่มความซับซ้อนขึ้นเรื่อยๆ
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <i class="fas fa-question-circle me-2"></i>ฉันจะได้รับประกาศนียบัตรเมื่อเรียนจบหรือไม่?
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            ใช่ ผู้เรียนที่เข้าเรียนครบตามหลักสูตรและผ่านการทดสอบในแต่ละบทเรียนด้วยคะแนนไม่ต่ำกว่า 70% จะได้รับประกาศนียบัตรรับรองการผ่านหลักสูตร ซึ่งสามารถดาวน์โหลดได้จากระบบหลังจากเรียนจบ
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <i class="fas fa-question-circle me-2"></i>มีการสนับสนุนหรือให้คำปรึกษาหลังจากเรียนจบหรือไม่?
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            เรามีกลุ่มชุมชนออนไลน์สำหรับผู้เรียนในหลักสูตร ซึ่งผู้สอนและผู้เชี่ยวชาญจะเข้ามาให้คำแนะนำและตอบคำถามเป็นประจำ นอกจากนี้ ผู้เรียนยังสามารถส่งคำถามผ่านระบบติดต่อได้โดยตรง และจะได้รับการตอบกลับภายใน 24-48 ชั่วโมง
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            <i class="fas fa-question-circle me-2"></i>ฉันสามารถเข้าถึงเนื้อหาได้นานแค่ไหนหลังจากลงทะเบียน?
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            ผู้เรียนสามารถเข้าถึงเนื้อหาทั้งหมดของหลักสูตรได้เป็นเวลา 1 ปีเต็มหลังจากวันที่ลงทะเบียน หากต้องการต่ออายุการเข้าถึงหลังจากหมดอายุ สามารถชำระค่าธรรมเนียมต่ออายุในราคาพิเศษสำหรับนักเรียนเก่าได้
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item mb-3">
+                    <h2 class="accordion-header" id="headingFive">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            <i class="fas fa-question-circle me-2"></i>มีการอัพเดตเนื้อหาหรือไม่?
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            ใช่ เราอัพเดตเนื้อหาของหลักสูตรเป็นประจำเพื่อให้ทันสมัยกับเทคโนโลยีที่เปลี่ยนแปลงไป โดยผู้เรียนจะได้รับการแจ้งเตือนผ่านอีเมลเมื่อมีการอัพเดตเนื้อหาใหม่ และสามารถเข้าถึงเนื้อหาที่อัพเดตได้ทันทีโดยไม่มีค่าใช้จ่ายเพิ่มเติม
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ส่วนผู้สอน & ติดต่อ -->
+    <section id="instructors-contact" class="py-5">
+        <div class="container">
+            <h2 class="section-title">ผู้สอน & ติดต่อ</h2>
+            
+            <!-- ส่วนผู้สอน -->
+            <div class="row mb-5">
+                <div class="col-md-4 mb-4">
+                    <div class="instructor-card">
+                        <img src="/api/placeholder/400/320" alt="อาจารย์สมชาย" class="img-fluid instructor-image">
+                        <div class="card-body text-center">
+                            <h4>อาจารย์สมชาย มีความรู้</h4>
+                            <p class="text-muted">ผู้เชี่ยวชาญด้าน Frontend Development</p>
+                            <p>มีประสบการณ์การสอนและพัฒนาเว็บไซต์มากกว่า 10 ปี เชี่ยวชาญด้าน HTML, CSS และ JavaScript</p>
+                            <div class="social-icons">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="instructor-card">
+                        <img src="/api/placeholder/400/320" alt="อาจารย์สมศรี" class="img-fluid instructor-image">
+                        <div class="card-body text-center">
+                            <h4>อาจารย์สมศรี เก่งกาจ</h4>
+                            <p class="text-muted">ผู้เชี่ยวชาญด้าน UX/UI Design</p>
+                            <p>อดีตนักออกแบบ UX/UI ที่บริษัทชั้นนำ มีประสบการณ์การสอนออกแบบเว็บไซต์มากกว่า 8 ปี</p>
+                            <div class="social-icons">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-behance"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="instructor-card">
+                        <img src="/api/placeholder/400/320" alt="อาจารย์สมหมาย" class="img-fluid instructor-image">
+                        <div class="card-body text-center">
+                            <h4>อาจารย์สมหมาย ใจดี</h4>
+                            <p class="text-muted">ผู้เชี่ยวชาญด้าน Backend Development</p>
+                            <p>ผู้พัฒนาระบบสำหรับองค์กรขนาดใหญ่ มีความเชี่ยวชาญด้าน Node.js, PHP และฐานข้อมูล</p>
+                            <div class="social-icons">
+                                <a href="#"><i class="fab fa-github"></i></a>
+                                <a href="#"><i class="fab fa-youtube"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ส่วนติดต่อ -->
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="contact-info">
+                        <h3 class="mb-4">ข้อมูลติดต่อ</h3>
+                        <div class="d-flex align-items-center mb-3">
+                            <span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
+                            <div>
+                                <h5 class="mb-0">ที่อยู่</h5>
+                                <p class="mb-0">123 ถนนสุขุมวิท แขวงคลองเตย เขตคลองเตย กรุงเทพฯ 10110</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <span class="contact-icon"><i class="fas fa-phone"></i></span>
+                            <div>
+                                <h5 class="mb-0">โทรศัพท์</h5>
+                                <p class="mb-0">02-123-4567, 089-765-4321</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+                            <div>
+                                <h5 class="mb-0">อีเมล</h5>
+                                <p class="mb-0">contact@example.com, support@example.com</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <span class="contact-icon"><i class="fas fa-clock"></i></span>
+                            <div>
+                                <h5 class="mb-0">เวลาทำการ</h5>
+                                <p class="mb-0">จันทร์ - ศุกร์: 9:00 - 17:00 น.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="contact-form">
+                        <h3 class="mb-4">ส่งข้อความถึงเรา</h3>
+                        <form id="contactForm">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="ชื่อ-นามสกุล *" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" placeholder="อีเมล *" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="หัวข้อ *" required>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="5" placeholder="ข้อความ *" required></textarea>
+                            </div>
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-primary">ส่งข้อความ</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // JavaScript สำหรับการดาวน์โหลดเอกสาร
+        document.querySelectorAll('.download-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const fileName = this.closest('.download-item').querySelector('h4').innerText;
+                alert(`กำลังเริ่มดาวน์โหลด: ${fileName}`);
+                // ในสถานการณ์จริง คุณจะใช้โค้ดที่เชื่อมต่อกับไฟล์จริง
+            });
+        });
+
+        // JavaScript สำหรับการส่งแบบฟอร์มติดต่อ
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formElements = this.elements;
+            let formData = {};
+            
+            for (let i = 0; i < formElements.length; i++) {
+                if (formElements[i].type !== 'submit') {
+                    formData[formElements[i].placeholder] = formElements[i].value;
+                }
+            }
+            
+            console.log('ข้อมูลที่ส่ง:', formData);
+            alert('ส่งข้อความเรียบร้อยแล้ว! เราจะติดต่อกลับโดยเร็วที่สุด');
+            this.reset();
+        });
+
+        // JavaScript สำหรับเพิ่มเอฟเฟกต์การแสดงผลคำถามที่พบบ่อย
+        const accordionItems = document.querySelectorAll('.accordion-item');
+        
+        accordionItems.forEach(item => {
+            const header = item.querySelector('.accordion-header');
+            header.addEventListener('click', function() {
+                const wasExpanded = header.querySelector('.accordion-button').getAttribute('aria-expanded') === 'true';
+                
+                // รีเซ็ตทุกรายการก่อน
+                accordionItems.forEach(otherItem => {
+                    const otherButton = otherItem.querySelector('.accordion-button');
+                    otherButton.classList.add('collapsed');
+                    otherButton.setAttribute('aria-expanded', 'false');
+                    otherItem.querySelector('.accordion-collapse').classList.remove('show');
+                });
+                
+                // ถ้าคลิกที่รายการที่กำลังเปิดอยู่แล้ว ให้ปิด (ทำไปแล้วข้างบน)
+                // ถ้าคลิกที่รายการที่ปิดอยู่ ให้เปิด
+                if (!wasExpanded) {
+                    const button = header.querySelector('.accordion-button');
+                    const collapse = item.querySelector('.accordion-collapse');
+                    button.classList.remove('collapsed');
+                    button.setAttribute('aria-expanded', 'true');
+                    collapse.classList.add('show');
+                }
+            }, false);
+        });
+    </script>
+</body>
+</html>
